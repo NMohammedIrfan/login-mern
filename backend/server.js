@@ -13,6 +13,10 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
+// Handling the root path ("/")
+app.get('/', (req, res) => {
+    res.send('Welcome to your application!');
+  });
 
 app.use('/api/users',userRoutes);
 
@@ -31,7 +35,7 @@ app.use((err, req, res, next) => {
       stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
     });
   });
-  
+
 app.use(notFound);
 app.use(errorHandler);
 
