@@ -14,11 +14,6 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
-
-app.get("/", (req, res) => {
-    res.send("API is Running");
-})
-
 app.get("/api/notes", (req, res) => {
     res.json(notes);
 })
