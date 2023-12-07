@@ -18,9 +18,13 @@ app.get("/api/notes", (req, res) => {
     res.json(notes);
 })
 app.get("/api/notes/:id", (req, res) => {
-    const note = notes.find((n) => n._id === req.params.id)
-    res.json(note);
-})
+    const note = notes.find((n) => n._id === req.params.id);
+    if (!note) {
+        res.status(404).json({ message: 'Note not found' });
+    } else {
+        res.json(note);
+    }
+});
 
 app.use('/api/users',userRoutes);
 app.use(notFound);
