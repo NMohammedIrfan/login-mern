@@ -1,5 +1,4 @@
 const express = require('express');
-const notes = require('./Data/notes');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const PORT = process.env.PORT || 5000;
@@ -14,17 +13,6 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/notes", (req, res) => {
-    res.json(notes);
-})
-app.get("/api/notes/:id", (req, res) => {
-    const note = notes.find((n) => n._id === req.params.id);
-    if (!note) {
-        res.status(404).json({ message: 'Note not found' });
-    } else {
-        res.json(note);
-    }
-});
 
 app.use('/api/users',userRoutes);
 app.use(notFound);
