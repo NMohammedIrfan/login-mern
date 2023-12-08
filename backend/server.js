@@ -13,11 +13,6 @@ connectDB();
 app.use(express.json());
 app.use(cors());
 
-// Handling the root path ("/")
-app.get('/', (req, res) => {
-    res.send('Welcome to your application!');
-  });
-
 app.use('/api/users',userRoutes);
 
 app.use((req, res, next) => {
