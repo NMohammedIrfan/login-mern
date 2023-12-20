@@ -15,6 +15,20 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Welcome to the homepage");
 });
+// Catch 404 and forward to error handler
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  // Set the status to the error status or default to 500
+  res.status(err.status || 500);
+  res.send(`Error ${err.status}: ${err.message}`);
+});
+
 app.use("/api/users", userRoutes);
 
 app.use((req, res, next) => {
